@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="template :: header">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		[data-role="messenger"].hide{
+			display:none;
+		}
+	</style>
+</head>
+
+<body>
+	<p 
+		class="alert alert-primary" 
+		data-role="messenger"
+		th:if="${message != ''}" 
+		th:text="${message}">Mensagem vai aqui</p>
+
+	<h1>Meus Equipamentos</h1>
+	<a th:href="@{/equipaments/form/novo}" class="btn btn-primary">Novo Equipamento</a>
+	<table class="table table-striped table-hover table-bordered">
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Nome</th>
+				<th>Tipo</th>
+				<th>Descrição</th>
+				<th>Código de Barras</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="equipament : ${equipaments}">
+				<td th:text="${equipament.id}"></td>
+				<td th:text="${equipament.name}"></td>
+				<td th:text="${equipament.tipo}"></td>
+				<td th:text="${equipament.descricao}"></td>
+				<td th:text="${equipament.codigoBarras}"></td>
+
+				<td>
+					<a th:href="@{/equipaments/form/{id}(id=${equipament.id})}">
+						<i class="bi bi-pencil-square" 
+						   style="font-size: 1.3rem; color: cornflowerblue;"></i>
+					</a>
+					/
+					<a th:href="@{/equipaments/delete/{id}(id=${equipament.id})}" data-role="delete">
+						<i class="bi bi-person-dash"
+						    style="font-size: 1.3rem; color: cornflowerblue;"></i>
+					</a>
+					
+				</td>
+			</tr>
+			
+			
+		</tbody>
+	</table>
+
+	<script>
+		const btnDelete = document.querySelector('a[data-role="delete"]');
+		btnDelete.addEventListener('click',(event)=>{
+			const ok = window.confirm('Deseja realmente remover o contato?');
+			if(!ok){
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				event.stopPropagation();
+			}
+		})
+		
+		setTimeout(()=>{
+			document.querySelector('[data-role="messenger"]').classList.toggle('hide');
+		},5000)
+	</script>
+
+</body>
+
+</html>

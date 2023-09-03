@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="template :: header">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		[data-role="messenger"].hide {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<p 
+					class="alert alert-primary" 
+					data-role="messenger" 
+					th:if="${message != ''}" 
+					th:text="${message}">Mensagem vai aqui</p>
+				<h1>Cadastro de Equipamento</h1>
+			</div>
+		</div>
+		<a th:href="@{/equipaments}"><i class="bi bi-list-ul" style="font-size: 1.3rem; color: cornflowerblue;"></i></a>
+		<div class="row">
+			<div class="col-md-12">
+				<form th:object="${equipament}" method="post" th:action="@{/equipaments/saveEquipament}">
+					<div class="col-md-3">
+						<label for="id" class="form-label">Código</label>
+						<input th:field="*{id}" type="text" class="form-control" id="id" readonly>
+					</div>
+
+					<div class="col-md-3">
+						<label for="name" class="form-label">Nome</label>
+						<input th:field="*{name}" type="text" class="form-control" id="name" placeholder="Informe o nome do Equipamento">
+					</div>
+
+					<div class="col-md-3">
+						<label for="descricao" class="form-label">Descrição </label>
+						<input th:field="*{descricao}" type="text" class="form-control" id="descricao" placeholder="informe a descricao do Equipamento">
+					</div>
+
+					<div class="col-md-3">
+						<label for="tipo" class="form-label">Tipo </label>
+						<select th:field="*{tipo}" id="tipo" placeholder="informe o tipo do Equipamento">
+							<option value="Fixo">Fixo</option>
+							<option value="Movel">Movel</option>
+						</select>
+					</div>
+
+
+					<div class="col-md-3">
+						<label for="codigoBarras" class="form-label">Código de barras</label>
+						<input th:field="*{codigoBarras}" type="text" class="form-control" id="codigoBarras" placeholder="informe o Código de barras do Equipamento">
+					</div>
+					<div class="col-md-3">
+						<button type="submit" class="btn btn-success">Gravar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+<script>
+	setTimeout(()=>{
+			document.querySelector('[data-role="messenger"]').classList.toggle('hide');
+		},5000)
+</script>
+
+</body>
+
+</html>
