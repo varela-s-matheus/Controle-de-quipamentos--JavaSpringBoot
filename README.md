@@ -1,7 +1,7 @@
 # Controle-de-quipamentos--JavaSpringBoot
  
 ## Sobre o Projeto
-O projeto API Java com SpringBoot sobre controle de equipamentos, contendo formulário para adicionar os quipamentos e listá-los para rastrear equipamentos registrados.
+O projeto Java com SpringBoot sobre controle de equipamentos, contendo formulário para adicionar os quipamentos e listá-los para rastrear equipamentos registrados.
 
 ## Tecnologias Utilizadas
 Este projeto utiliza Java e SpringBoot armazenando as informações no banco de dados relacional H2.
